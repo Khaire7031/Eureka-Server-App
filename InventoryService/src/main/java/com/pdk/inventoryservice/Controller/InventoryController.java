@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pdk.inventoryservice.Model.Inventory;
 import com.pdk.inventoryservice.Service.InventoryService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,11 @@ public class InventoryController {
     @ResponseStatus(HttpStatus.OK)
     public boolean addInventory(@PathVariable String skuCode) {
         return inventoryService.isInStock(skuCode);
+    }
+
+    @GetMapping("/name")
+    public String getAllInventories() {
+        return "My name is Pranav";
     }
 
 }
