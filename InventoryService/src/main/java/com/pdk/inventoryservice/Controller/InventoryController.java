@@ -1,16 +1,17 @@
 package com.pdk.inventoryservice.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pdk.inventoryservice.Model.Inventory;
+import com.pdk.inventoryservice.Dto.InventoryResponse;
 import com.pdk.inventoryservice.Service.InventoryService;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 
 @RestController
@@ -20,15 +21,9 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    @GetMapping("/skuCode")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public boolean addInventory(@PathVariable String skuCode) {
+    public List<InventoryResponse> addInventory(@RequestParam List<String> skuCode) {
         return inventoryService.isInStock(skuCode);
     }
-
-    @GetMapping("/name")
-    public String getAllInventories() {
-        return "My name is Pranav";
-    }
-
 }
